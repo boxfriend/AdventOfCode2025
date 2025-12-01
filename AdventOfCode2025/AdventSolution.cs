@@ -7,7 +7,7 @@ public interface IAdventSolution
 
 public record struct AdventSolution(string PartOne, string PartTwo);
 
-public class AdventSolver<T> where T : IAdventSolution, new()
+public static class AdventSolver<T> where T : IAdventSolution, new()
 {
     public static void Solve(string input, int day, string title)
     {

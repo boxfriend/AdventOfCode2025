@@ -4,22 +4,27 @@ namespace AdventOfCode2025;
 
 public class GiftShop : IAdventSolution
 {
+    private readonly Regex _regex = new(@"^(.+)\1+$");
+    
     public AdventSolution Solve(string input)
     {
         var ranges = input.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
         ulong totalInvalid = 0;
+        ulong newInvalid = 0;
         foreach (var rangeString in ranges)
         {
             var range = GetRange(rangeString);
             for (var i = range.Min; i <= range.Max; i++)
             {
-                if(IsInvalid(i))
-                    totalInvalid += (ulong)i;
-                    
+                if (IsInvalid(i))
+                    totalInvalid += i;
+
+                if(IsRepeat(i))
+                    newInvalid += i;
             }
         }
         
-        return new AdventSolution(totalInvalid.ToString(), null);
+        return new AdventSolution(totalInvalid.ToString(),newInvalid.ToString());
     }
 
     private bool IsInvalid(ulong id)
@@ -30,6 +35,8 @@ public class GiftShop : IAdventSolution
         var second = s[half..];
         return first == second;
     }
+    
+    private bool IsRepeat(ulong id) => _regex.IsMatch(id.ToString());
 
     private Range GetRange(string input)
     {

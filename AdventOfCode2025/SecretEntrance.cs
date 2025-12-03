@@ -1,10 +1,12 @@
-﻿namespace AdventOfCode2025;
+﻿using AdventOfCode2025.Utils;
+
+namespace AdventOfCode2025;
 
 public class SecretEntrance : IAdventSolution
 {
     public AdventSolution Solve(string input)
     {
-        var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        var lines = input.SplitLines();
         
         var current = 50;
         var password = 0;

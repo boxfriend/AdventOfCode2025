@@ -16,14 +16,27 @@ public class PrintingDepartment : IAdventSolution
                     _existingRolls.Add(new Coordinate(j, i));
             }
         }
-
-        var accessible = 0;
-        foreach (var c in _existingRolls)
+        var initialCount = _existingRolls.Count;
+        var accessible = -1;
+        var firstAccessible = -1;
+        var toRemove = new HashSet<Coordinate>();
+        while(accessible != 0 && _existingRolls.Count > 0)
         {
-            if(IsAccessible(c)) accessible++;
-        }
-        
-        return new AdventSolution(accessible.ToString(), null);
+            accessible = 0;
+            foreach (var c in _existingRolls)
+            {
+                if (!IsAccessible(c)) continue;
+                accessible++;
+                toRemove.Add(c);
+            }
+            
+            if (firstAccessible == -1) firstAccessible = accessible;
+            
+            _existingRolls.RemoveWhere(x => toRemove.Contains(x));
+            toRemove.Clear();
+        } 
+
+        return new AdventSolution(firstAccessible.ToString(), (initialCount - _existingRolls.Count).ToString());
     }
 
     private readonly Coordinate[] _directions =

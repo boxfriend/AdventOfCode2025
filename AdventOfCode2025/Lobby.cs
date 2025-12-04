@@ -11,17 +11,23 @@ public class Lobby : IAdventSolution
         var total = 0;
         foreach (var line in lines)
         {
-            var max = 0;
+            var first = '0';
+            var second = '0';
             for (var i = 0; i < line.Length; i++)
             {
-                for (var j = i + 1; j < line.Length; j++)
+                if (i != line.Length - 1 && line[i] > first)
                 {
-                    var num = int.Parse(line[i].ToString() + line[j].ToString());
-                    if (num > max) max = num;
-                    
+                    first = line[i];
+                    second = line[i + 1];
+                }
+                else if (line[i] > second)
+                {
+                    second = line[i];
                 }
             }
-            total += max;
+            
+            
+            total += int.Parse($"{first}{second}");
         }
         
         return new AdventSolution(total.ToString(), null);

@@ -21,7 +21,7 @@ public class Cafeteria : IAdventSolution
         var fresh = 0;
         for(; startIndex < lines.Length; startIndex++)
         {
-            var line = lines[startIndex++];
+            var line = lines[startIndex];
             if (line.Contains('-'))
                 continue;
 

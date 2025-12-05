@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Range = AdventOfCode2025.Utils.Range;
 
 namespace AdventOfCode2025;
 
@@ -44,5 +45,3 @@ public class GiftShop : IAdventSolution
         return new Range(ulong.Parse(numbers[0]), ulong.Parse(numbers[^1]));
     }
 }
-
-public record struct Range(ulong Min, ulong Max);

@@ -15,4 +15,7 @@ var dayFourInput = await File.ReadAllTextAsync("./Input/DayFour.txt");
 AdventSolver<PrintingDepartment>.Solve(dayFourInput, 4, "Printing Department");
 
 var dayFiveInput = await File.ReadAllTextAsync("./Input/DayFive.txt");
-AdventSolver<Cafeteria>.Solve(dayFiveInput, 4, "Cafeteria");
+AdventSolver<Cafeteria>.Solve(dayFiveInput, 5, "Cafeteria");
+
+var daySixInput = await File.ReadAllTextAsync("./Input/Test.txt");
+AdventSolver<TrashCompactor>.Solve(daySixInput, 6, "Trash Compactor");
